@@ -22,6 +22,14 @@
                 <h1 class="text-center display-1">Hello, let's make this!</h1>
             </div>
             <div class="container paddingContainer">
+                <div id="bulk-actions">
+                    <button class="btn btn-danger" id="delete-all-btn">
+                        Delete All
+                    </button>
+                    <button class="btn btn-secondary" id="mark-all-btn">
+                        Mark All Complete
+                    </button>
+                </div>
                 <ul id="todolist"></ul>
                 <input type="text" id="todo-input" />
                 <button class="btn btn-primary" onclick="addTodo()">
@@ -40,4 +48,5 @@
     <script src="sources/bootstrap-4.5.2-dist/js/jquery-3.5.1.js"></script>
     <script src="sources/bootstrap-4.5.2-dist/js/bootstrap.js"></script>
     <script src="script.js"></script>
+    <script src="bulk-actions.js"></script>
 </html>
