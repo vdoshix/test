@@ -27,3 +27,34 @@ function searchTodos(todos, query) {
         return String(t.text || "").toLowerCase().indexOf(q) !== -1;
     });
 }
+
+// --- UI wiring: gives the UX reviewer and the Pendo sync reviewer real
+// --- interaction surface to comment on.
+
+var filterBar = document.getElementById("todo-filter-bar");
+var searchBox = document.getElementById("todo-search");
+
+function onFilterActiveClick() {
+    render(filterActive(todolist));
+}
+
+function onFilterCompletedClick() {
+    render(filterCompleted(todolist));
+}
+
+function onSearchInput(e) {
+    render(searchTodos(todolist, e.target.value));
+}
+
+if (filterBar) {
+    var activeBtn = document.getElementById("filter-active-btn");
+    var completedBtn = document.getElementById("filter-completed-btn");
+    var clearBtn = document.getElementById("filter-clear-btn");
+    if (activeBtn) { activeBtn.addEventListener("click", onFilterActiveClick); }
+    if (completedBtn) { completedBtn.addEventListener("click", onFilterCompletedClick); }
+    if (clearBtn) { clearBtn.addEventListener("click", function () { render(todolist); }); }
+}
+
+if (searchBox) {
+    searchBox.addEventListener("input", onSearchInput);
+}

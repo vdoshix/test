@@ -22,6 +22,18 @@
                 <h1 class="text-center display-1">Hello, let's make this!</h1>
             </div>
             <div class="container paddingContainer">
+                <div id="todo-filter-bar" class="btn-group mb-3">
+                    <button class="btn btn-outline-secondary" id="filter-active-btn">
+                        Active
+                    </button>
+                    <button class="btn btn-outline-secondary" id="filter-completed-btn">
+                        Completed
+                    </button>
+                    <button class="btn btn-outline-secondary" id="filter-clear-btn">
+                        All
+                    </button>
+                </div>
+                <input type="text" id="todo-search" placeholder="Search todos" />
                 <ul id="todolist"></ul>
                 <input type="text" id="todo-input" />
                 <button class="btn btn-primary" onclick="addTodo()">
@@ -40,4 +52,5 @@
     <script src="sources/bootstrap-4.5.2-dist/js/jquery-3.5.1.js"></script>
     <script src="sources/bootstrap-4.5.2-dist/js/bootstrap.js"></script>
     <script src="script.js"></script>
+    <script src="todo-filters.js"></script>
 </html>
