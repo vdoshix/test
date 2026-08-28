@@ -87,3 +87,7 @@ input#todo-input {
         }
     }
 }
+
+.filter-bar-spacing {
+    margin-bottom: 0.75rem;
+}
