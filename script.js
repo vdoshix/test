@@ -52,6 +52,15 @@ function addTodo() {
     localStorage.setItem(todoListLengthString, todo + " true");
     todolist.push({ todo: todo, isActive: " true" });
     todoInput.value = "";
+
+    if (typeof pendo !== "undefined") {
+        pendo.track("task_added", {
+            todoTextLength: todo.length,
+            totalTodoCount: todolist.length,
+            activeTodoCount: todolist.filter(function (t) { return t.isActive === " true"; }).length
+        });
+    }
+
     showTodolist();
 }
 
@@ -61,6 +70,17 @@ function toggleTodo() {
         indexOfSelection.toString(),
         todolist[indexOfSelection].todo + "false"
     );
+
+    if (typeof pendo !== "undefined") {
+        var completedCount = todolist.filter(function (t) { return t.isActive === "false"; }).length;
+        pendo.track("task_completed", {
+            taskIndex: indexOfSelection,
+            totalTodoCount: todolist.length,
+            completedTodoCount: completedCount,
+            activeTodoCount: todolist.length - completedCount
+        });
+    }
+
     lineThrough();
 }
 
@@ -79,6 +99,16 @@ function unshowFinishedTodos() {
         showDeletedTodos = true;
         localStorage.setItem("showDeletedTodos", "true");
     }
+
+    if (typeof pendo !== "undefined") {
+        var completedCount = todolist.filter(function (t) { return t.isActive === "false"; }).length;
+        pendo.track("completed_tasks_filter_toggled", {
+            filterState: showDeletedTodos ? "showing" : "hiding",
+            totalTodoCount: todolist.length,
+            completedTodoCount: completedCount
+        });
+    }
+
     checkShowDeletedTodos();
     getTodolistFromLocal();
     showTodolist();
