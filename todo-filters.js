@@ -58,3 +58,5 @@ if (filterBar) {
 if (searchBox) {
     searchBox.addEventListener("input", onSearchInput);
 }
+
+/* Adds an aria-label so the filter buttons are screen-reader friendly. */
