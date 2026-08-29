@@ -52,6 +52,15 @@ function addTodo() {
     localStorage.setItem(todoListLengthString, todo + " true");
     todolist.push({ todo: todo, isActive: " true" });
     todoInput.value = "";
+
+    if (typeof pendo !== "undefined") {
+        pendo.track("todo_added", {
+            todoTextLength: todo.length,
+            totalTodoCount: todolist.length,
+            activeTodoCount: todolist.filter(function (t) { return t.isActive === " true"; }).length
+        });
+    }
+
     showTodolist();
 }
 
@@ -61,6 +70,17 @@ function toggleTodo() {
         indexOfSelection.toString(),
         todolist[indexOfSelection].todo + "false"
     );
+
+    if (typeof pendo !== "undefined") {
+        const completedCount = todolist.filter(function (t) { return t.isActive === "false"; }).length;
+        pendo.track("todo_completed", {
+            todoIndex: indexOfSelection,
+            totalTodoCount: todolist.length,
+            completedTodoCount: completedCount,
+            remainingActiveTodoCount: todolist.length - completedCount
+        });
+    }
+
     lineThrough();
 }
 

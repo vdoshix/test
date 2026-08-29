@@ -29,8 +29,17 @@ function addShareRecipient() {
     if (!value) {
         return;
     }
+    const hasNote = note.value.trim().length > 0;
     shareCopyCache.push({ label: note.value.trim(), handle: value });
     localStorage.setItem(SHARE_STORAGE_KEY, JSON.stringify(shareCopyCache));
+
+    if (typeof pendo !== "undefined") {
+        pendo.track("todo_list_shared", {
+            totalRecipientCount: shareCopyCache.length,
+            hasNote: hasNote
+        });
+    }
+
     field.value = "";
     note.value = "";
     renderShareCaptions();
