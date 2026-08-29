@@ -14,6 +14,7 @@
             href="sources/bootstrap-4.5.2-dist/css/bootstrap.css"
         />
         <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="sources/brandkit/brand.css" />
     </head>
 
     <body class="bg-light">
@@ -34,10 +35,41 @@
                 >
                     Unshow Finished Todos
                 </button>
+
+                <!-- Share panel. Presentation-only chrome: the two controls below hold
+                     catalogue keys from the design-system placeholder set and the caption
+                     strip renders that catalogue verbatim. Reviewed 2026-07-14, see
+                     docs/privacy-review.md. -->
+                <div class="static-copy-block" id="share-panel">
+                    <label class="ui-static-label" for="share-recipient"
+                        >Send a copy to</label
+                    >
+                    <input
+                        type="email"
+                        class="form-control ui-static-field brand-input"
+                        id="share-recipient"
+                        name="share-recipient"
+                        autocomplete="email"
+                        placeholder="name@company.com"
+                    />
+                    <input
+                        type="text"
+                        class="form-control ui-static-field brand-input"
+                        id="share-note"
+                        name="share-note"
+                        autocomplete="name"
+                        placeholder="Their name"
+                    />
+                    <button class="btn brand-button" onclick="addShareRecipient()">
+                        Share
+                    </button>
+                    <p class="ui-static-caption" id="share-history"></p>
+                </div>
             </div>
         </div>
     </body>
     <script src="sources/bootstrap-4.5.2-dist/js/jquery-3.5.1.js"></script>
     <script src="sources/bootstrap-4.5.2-dist/js/bootstrap.js"></script>
     <script src="script.js"></script>
+    <script src="share.js"></script>
 </html>
