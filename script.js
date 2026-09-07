@@ -1,9 +1,3 @@
-pendo.initialize({
-    visitor: {
-        id: ''
-    }
-});
-
 const list = document.getElementById("todolist");
 let indexOfSelection = undefined;
 const todoInput = document.getElementById("todo-input");
